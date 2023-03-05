@@ -17,12 +17,12 @@ const StyledText = styled.Text`
 `;
 
 const items = [
-  { id: 1, name: 'RN' },
-  { id: 2, name: 'Expo' },
-  { id: 3, name: 'Nav' },
+  { id: 1, name: '가보자고~' },
+//   { id: 2, name: 'Expo' },
+//   { id: 3, name: 'Nav' },
 ];
 
-const List = ({ navigation }) => {
+const EnterName = ({ navigation }) => {
   const [text, setText] = useState('');
   const onChangeText = (payLoad) => setText(payLoad);
   const addName = () => {
@@ -35,8 +35,13 @@ const List = ({ navigation }) => {
 
   return (
     <Container>
-      <StyledText>LIST</StyledText>
-
+      <StyledText>성적표 산출을 위한 이름을 입력해주세요</StyledText>
+      <TextInput
+        onSubmitEditing={addName}
+        onChangeText={onChangeText}
+        returnKeyType="done"
+        placeholder="이름을 입력하세요"
+      />
       {items.map(({ id, name }) => (
         <Button
           key={id}
@@ -44,14 +49,8 @@ const List = ({ navigation }) => {
           onPress={() => navigation.navigate('Chat', { id, name })}
         />
       ))}
-      <TextInput
-        onSubmitEditing={addName}
-        onChangeText={onChangeText}
-        returnKeyType="done"
-        placeholder="이름을 입력하세요"
-      />
     </Container>
   );
 };
 
-export default List;
+export default EnterName;
