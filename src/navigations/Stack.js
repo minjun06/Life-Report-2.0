@@ -1,7 +1,7 @@
 import React from 'react';
 //import { StatusBar } from 'expo-status-bar';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home, EnterName, List, Chat } from '../screens';
+import { Home, EnterName, List, Chat, VideoPage } from '../screens';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +19,7 @@ const StackNav = () => {
       <Stack.Screen name="EnterName" component={EnterName} />
       <Stack.Screen name="List" component={List} />
       <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="VideoPage" component={VideoPage} />
     </Stack.Navigator>
   );
 };
