@@ -23,44 +23,45 @@ import Sound from 'react-native-sound';
 
 //var Sound = require('react-native-sound');
 
-Sound.setCategory('Playback');
+// Sound.setCategory('Playback');
 
-var ding = new Sound('ding.mp3', Sound.MAIN_BUNDLE, (error) => {
-  if (error) {
-    console.log('failed to load the sound', error);
-    return;
-  }
-  // when loaded successfully
-  console.log(
-    'duration in seconds: ' +
-      whoosh.getDuration() +
-      'number of channels: ' +
-      whoosh.getNumberOfChannels()
-  );
-});
+// var ding = new Sound('ding.mp3', Sound.MAIN_BUNDLE, (error) => {
+//   if (error) {
+//     console.log('failed to load the sound', error);
+//     return;
+//   }
+//   // when loaded successfully
+//   console.log(
+//     'duration in seconds: ' +
+//       whoosh.getDuration() +
+//       'number of channels: ' +
+//       whoosh.getNumberOfChannels()
+//   );
+// });
 
 const VideoPage = () => {
-  useEffect(() => {
-    ding.setVolume(1);
-    return () => {
-      ding.release();
-    };
-  }, []);
-  const playPause = () => {
-    ding.play((success) => {
-      if (success) {
-        console.log('successfully finished playing');
-      } else {
-        console.log('playback failed due to audio decoding errors');
-      }
-    });
-  };
+  //   useEffect(() => {
+  //     ding.setVolume(1);
+  //     return () => {
+  //       ding.release();
+  //     };
+  //   }, []);
+  //   const playPause = () => {
+  //     ding.play((success) => {
+  //       if (success) {
+  //         console.log('successfully finished playing');
+  //       } else {
+  //         console.log('playback failed due to audio decoding errors');
+  //       }
+  //     });
+  //   };
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.playBtn} onPress={playPause}>
-        <Ionicons name={'ios-play-outline'} size={36} color={'#fff'} />
-      </TouchableOpacity>
-    </View>
+    // <View style={styles.container}>
+    //   <TouchableOpacity style={styles.playBtn} onPress={playPause}>
+    //     <Ionicons name={'ios-play-outline'} size={36} color={'#fff'} />
+    //   </TouchableOpacity>
+    // </View>
+    <Text> 그대의 이름은... </Text>
   );
 };
 const styles = StyleSheet.create({
