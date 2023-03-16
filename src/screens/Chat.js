@@ -74,8 +74,8 @@ const Chat = ({ navigation, route }) => {
       <Text> 그대의 이름은... </Text>
       <StyledText>{route.params.name}</StyledText>
       <Button
-        title="Video Page"
-        onPress={() => navigation.reset({ routes: [{ name: 'VideoPage' }] })}
+        title="Questions"
+        onPress={() => navigation.reset({ routes: [{ name: 'Questions' }] })}
       />
     </Container>
   );

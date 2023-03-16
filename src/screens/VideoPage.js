@@ -42,24 +42,10 @@ import { Audio, AVPlaybackStatus, Video } from 'expo-av';
 
 // export default VideoPage;
 
-const sound = new Audio.Sound();
+
 const videoRef = React.createRef();
 
-const playSound = async () => {
-  try {
-    // 저장한 path로 음원 파일 불러오기
-    await sound.loadAsync(require('../images/eventHorizon.mp3'));
-    // await sound.loadAsync({
-    //   uri: 'https://file-examples.com/storage/fe137d1f80640cf1e98d9f6/2017/11/file_example_MP3_700KB.mp3',
-    // });
-    // 음원 재생하기
-    await sound.playAsync();
-    await sound.setIsLoopingAsync(true);
-  } catch (error) {
-    // An error occurred!
-    console.log(error);
-  }
-};
+
 
 // const stopSound = async () => {
 //     try {
@@ -88,7 +74,7 @@ const playSound = async () => {
 const VideoPage = ({}) => {
   return (
     <View>
-      <Button title="음악" onPress={playSound} />
+      {/* <Button title="음악" onPress={playSound} /> */}
       <Video
         ref={this.videoRef}
         //source = {{uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"}}
