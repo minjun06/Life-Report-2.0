@@ -2,7 +2,14 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Button from '../components/Button';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
 const Container = styled.View`
   flex: 1;
@@ -25,32 +32,183 @@ const StyledText = styled.Text`
 const page10 = {
   //title: "제목",
   //question: "무언가 반짝인다",
-  buttonTop: {message: '움직인다', luck: 0, athleticity: 20, iq: 10, emotion: 0, money: 0, mbtiE: 5, mbtiI: 0, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
-  buttonBottom: {message: '가만히 지켜본다', luck: 0, athleticity: -10, iq: 0, emotion: 0, money: 0, mbtiE: 0, mbtiI: 10, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
+  buttonTop: {
+    message: '움직인다',
+    luck: 0,
+    athleticity: 20,
+    iq: 10,
+    emotion: 0,
+    money: 0,
+    mbtiE: 5,
+    mbtiI: 0,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 0,
+    mbtiF: 0,
+    mbtiJ: 0,
+    mbtiP: 0,
+  },
+  buttonBottom: {
+    message: '가만히 지켜본다',
+    luck: 0,
+    athleticity: -10,
+    iq: 0,
+    emotion: 0,
+    money: 0,
+    mbtiE: 0,
+    mbtiI: 10,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 0,
+    mbtiF: 0,
+    mbtiJ: 0,
+    mbtiP: 0,
+  },
   imgUrl: require('../images/10.png'),
 };
 
 const page11 = {
-  buttonTop: {message: '뭔가.... 주기 싫다.', luck: 0, athleticity: 0, iq: 0, emotion: -10, money: 3000, mbtiE: 0, mbtiI: 10, mbtiS: 0, mbtiN: 0, mbtiT: 5, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
-  buttonBottom: {message: '나눠 먹어야 착한 어린이!', luck: 5, athleticity: 0, iq: 0, emotion: 30, money: -1000, mbtiE: 5, mbtiI: 0, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 20, mbtiJ: 0, mbtiP: 0 },
+  buttonTop: {
+    message: '뭔가.... 주기 싫다.',
+    luck: 0,
+    athleticity: 0,
+    iq: 0,
+    emotion: -10,
+    money: 3000,
+    mbtiE: 0,
+    mbtiI: 10,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 5,
+    mbtiF: 0,
+    mbtiJ: 0,
+    mbtiP: 0,
+  },
+  buttonBottom: {
+    message: '나눠 먹어야 착한 어린이!',
+    luck: 5,
+    athleticity: 0,
+    iq: 0,
+    emotion: 30,
+    money: -1000,
+    mbtiE: 5,
+    mbtiI: 0,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 0,
+    mbtiF: 20,
+    mbtiJ: 0,
+    mbtiP: 0,
+  },
   imgUrl: require('../images/11.png'),
+  visibleThirdButton: true,
 };
 
 const page12 = {
-  buttonTop: {message: '빌려준다', luck: 10, athleticity: 0, iq: 0, emotion: 20, money: -10000, mbtiE: 20, mbtiI: 0, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 20, mbtiJ: 0, mbtiP: 0 },
-  buttonBottom: {message: '안 빌려준다', luck: -20, athleticity: 0, iq: 0, emotion: -5, money: 15000, mbtiE: 0, mbtiI: 10, mbtiS: 0, mbtiN: 0, mbtiT: 5, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
+  buttonTop: {
+    message: '빌려준다',
+    luck: 10,
+    athleticity: 0,
+    iq: 0,
+    emotion: 20,
+    money: -10000,
+    mbtiE: 20,
+    mbtiI: 0,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 0,
+    mbtiF: 20,
+    mbtiJ: 0,
+    mbtiP: 0,
+  },
+  buttonBottom: {
+    message: '안 빌려준다',
+    luck: -20,
+    athleticity: 0,
+    iq: 0,
+    emotion: -5,
+    money: 15000,
+    mbtiE: 0,
+    mbtiI: 10,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 5,
+    mbtiF: 0,
+    mbtiJ: 0,
+    mbtiP: 0,
+  },
   imgUrl: require('../images/12.png'),
 };
 
 const page13 = {
-  buttonTop: {message: '반짝반짝! 너무 궁금해! ㅎㅎ', luck: -10, athleticity: 10, iq: 0, emotion: 5, money: 0, mbtiE: 5, mbtiI: 0, mbtiS: 0, mbtiN: 5, mbtiT: 0, mbtiF: 5, mbtiJ: 0, mbtiP: 10 },
-  buttonBottom: {message: '아주 조~금 수상한거 같기도?', luck: 0, athleticity: 0, iq: 0, emotion: 0, money: 0, mbtiE: 0, mbtiI: 10, mbtiS: 5, mbtiN: 0, mbtiT: 5, mbtiF: 0, mbtiJ: 5, mbtiP: 0 },
+  buttonTop: {
+    message: '반짝반짝! 너무 궁금해! ㅎㅎ',
+    luck: -10,
+    athleticity: 10,
+    iq: 0,
+    emotion: 5,
+    money: 0,
+    mbtiE: 5,
+    mbtiI: 0,
+    mbtiS: 0,
+    mbtiN: 5,
+    mbtiT: 0,
+    mbtiF: 5,
+    mbtiJ: 0,
+    mbtiP: 10,
+  },
+  buttonBottom: {
+    message: '아주 조~금 수상한거 같기도?',
+    luck: 0,
+    athleticity: 0,
+    iq: 0,
+    emotion: 0,
+    money: 0,
+    mbtiE: 0,
+    mbtiI: 10,
+    mbtiS: 5,
+    mbtiN: 0,
+    mbtiT: 5,
+    mbtiF: 0,
+    mbtiJ: 5,
+    mbtiP: 0,
+  },
   imgUrl: require('../images/13.png'),
 };
 
 const page14 = {
-  buttonTop: "'나 집에 가려고!' (피하자)",
-  buttonBottom: "'그냥 있어!' (나랑 놀아줘)",
+  buttonTop: {
+    message: "'나 집에 가려고!' (피하자)",
+    luck: 0,
+    athleticity: 0,
+    iq: 0,
+    emotion: 0,
+    money: 0,
+    mbtiE: 0,
+    mbtiI: 10,
+    mbtiS: 5,
+    mbtiN: 0,
+    mbtiT: 5,
+    mbtiF: 0,
+    mbtiJ: 5,
+    mbtiP: 0,
+  },
+  buttonBottom: {
+    message: "'그냥 있어!' (나랑 놀아줘)",
+    luck: 0,
+    athleticity: 0,
+    iq: 0,
+    emotion: 0,
+    money: 0,
+    mbtiE: 0,
+    mbtiI: 10,
+    mbtiS: 5,
+    mbtiN: 0,
+    mbtiT: 5,
+    mbtiF: 0,
+    mbtiJ: 5,
+    mbtiP: 0,
+  },
   imgUrl: require('../images/14.png'),
 };
 
@@ -152,120 +310,170 @@ const dataList = [
 ];
 
 const resultList = {
-    luck: 0,
-    athleticity: 0,
-    iq: 0,
-    emotion: 0,
-    money: 0,
-    mbtiE: 0,
-    mbtiI: 0,
-    mbtiS: 0,
-    mbtiN: 0,
-    mbtiT: 0,
-    mbtiF: 0,
-    mbtiJ: 0,
-    mbtiP: 0,
+  luck: 0,
+  athleticity: 0,
+  iq: 0,
+  emotion: 0,
+  money: 0,
+  mbtiE: 0,
+  mbtiI: 0,
+  mbtiS: 0,
+  mbtiN: 0,
+  mbtiT: 0,
+  mbtiF: 0,
+  mbtiJ: 0,
+  mbtiP: 0,
 };
 
-
+var lottoNumber = Math.floor(Math.random() * 10);
 var pageNum = 0;
 
 const Questions = ({ navigation, route }) => {
+  const [inputText, setInputText] = useState ('');
+  const onChangeNumber = (payLoad) => setInputText(payLoad);
   const [text, setText] = useState({
     topMessage: dataList[pageNum].buttonTop.message,
     bottomMessage: dataList[pageNum].buttonBottom.message,
     imageUrl: dataList[pageNum].imgUrl,
+    visibleThirdButton: false,
   });
   const onChangeText = (isTop) => {
-    if (isTop) {
-      resultList.luck+=dataList[pageNum].buttonTop.luck;
-      resultList.athleticity+=dataList[pageNum].buttonTop.athleticity;
-      resultList.iq+=dataList[pageNum].buttonTop.iq;
-      resultList.emotion+=dataList[pageNum].buttonTop.emotion;
-      resultList.money+=dataList[pageNum].buttonTop.money;
-      resultList.mbtiE+=dataList[pageNum].buttonTop.mbtiE;
-      resultList.mbtiI+=dataList[pageNum].buttonTop.mbtiI;
-      resultList.mbtiS+=dataList[pageNum].buttonTop.mbtiS;
-      resultList.mbtiN+=dataList[pageNum].buttonTop.mbtiN;
-      resultList.mbtiT+=dataList[pageNum].buttonTop.mbtiT;
-      resultList.mbtiF+=dataList[pageNum].buttonTop.mbtiF;
-      resultList.mbtiJ+=dataList[pageNum].buttonTop.mbtiJ;
-      resultList.mbtiP+=dataList[pageNum].buttonTop.mbtiP;
+    //죽는경우
+    if (isTop && dataList[pageNum].buttonTop.isDead) {
+    } else if (!isTop && dataList[pageNum].buttonBottom.isDead) {
     } else {
-      resultList.luck+=dataList[pageNum].buttonBottom.luck;
-      resultList.athleticity+=dataList[pageNum].buttonBottom.athleticity;
-      resultList.iq+=dataList[pageNum].buttonBottom.iq;
-      resultList.emotion+=dataList[pageNum].buttonBottom.emotion;
-      resultList.money+=dataList[pageNum].buttonBottom.money;
-      resultList.mbtiE+=dataList[pageNum].buttonBottom.mbtiE;
-      resultList.mbtiI+=dataList[pageNum].buttonBottom.mbtiI;
-      resultList.mbtiS+=dataList[pageNum].buttonBottom.mbtiS;
-      resultList.mbtiN+=dataList[pageNum].buttonBottom.mbtiN;
-      resultList.mbtiT+=dataList[pageNum].buttonBottom.mbtiT;
-      resultList.mbtiF+=dataList[pageNum].buttonBottom.mbtiF;
-      resultList.mbtiJ+=dataList[pageNum].buttonBottom.mbtiJ;
-      resultList.mbtiP+=dataList[pageNum].buttonBottom.mbtiP;
-    } 
-    setText({
+      if (isTop) {
+        updateResultList(dataList[pageNum].buttonTop);
+      } else {
+        updateResultList(dataList[pageNum].buttonBottom);
+      }
+      setText({
         topMessage: dataList[++pageNum].buttonTop.message,
         bottomMessage: dataList[pageNum].buttonBottom.message,
-        imgUrl: dataList[pageNum].imgUrl,
-    });
-    console.log("luck:" + resultList.luck)
-    console.log("atheletic:" + resultList.athleticity)
-    console.log("iq:" + resultList.iq)
-    console.log("emotion:" + resultList.emotion)
-    console.log("money:" + resultList.money)
-    console.log("=============:")
+        imageUrl: dataList[pageNum].imgUrl,
+        visibleThirdButton: dataList[pageNum].visibleThirdButton,
+      });
+      console.log('Page Number:' + pageNum);
+      console.log('RandomNumber: ' + lottoNumber);
+      console.log('luck:' + resultList.luck);
+      console.log('atheletic:' + resultList.athleticity);
+      console.log('iq:' + resultList.iq);
+      console.log('emotion:' + resultList.emotion);
+      console.log('money:' + resultList.money);
+      console.log('=============:');
+    }
+  };
 
+  const compareNumber = () => {
+    if (lottoNumber == parseInt(inputText)) {
+      resultList.luck += 30
+      resultList.money += 10000000000
+    }
+    console.log('Lotto:' + lottoNumber);
+    console.log('InputText:' + inputText);
+    console.log('CN luck:' + resultList.luck);
+    console.log('CN money:' + resultList.money);
   };
 
   return (
     <Container>
-        <View style={{ width: '100%', height: '100%' }}>
-            <Image
-            source={text.imageUrl}
-            style={{ width: '100%', height: '100%' }}
-            />
-        </View>
-        <View
-            style={{
-                position: 'absolute',
-                top: '60%',
-                left: 0,
-                right: 0,
-                bottom: 0,
-                justifyContent: 'center',
-                alignItems: 'center',
-                
-            }}
-        >
-        <Button
-          style={{ 
-            position: 'absolute',
-            top: -1000,
-         }}
-          title={text.topMessage}
-          onPress={() =>
-            onChangeText({
-            //   topMessage: dataList[++pageNum].buttonTop,
-            //   bottomMessage: dataList[pageNum].buttonBottom,
-            //   imgUrl: dataList[pageNum].imgUrl,
-              isTop: true,
-            })
-          }
+      <View style={{ width: '100%', height: '100%' }}>
+        <Image
+          source={text.imageUrl}
+          style={{ width: '100%', height: '100%' }}
         />
+      </View>
+      <View
+        style={{
+          position: 'absolute',
+          top: '70%',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+        }}
+      >
+        <TextInput
+          onSubmitEditing={compareNumber}
+          onChangeText={onChangeNumber}
+          returnKeyType="done"
+          placeholder="이름을 입력하세요"
+        />
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            pageNum = 0;
+            navigation.reset({ routes: [{ name: 'Home' }] });
+          }}
+        >
+          <Text style={{ color: '#ffffff' }}>다시 하기</Text>
+        </TouchableOpacity>
+        <Button title={text.topMessage} onPress={() => onChangeText(true)} />
         <Button
           title={text.bottomMessage}
-          onPress={() =>
-            onChangeText({
-              isTop: false,
-            })
-          }
+          onPress={() => onChangeText(false)}
         />
-    </View>
+        <ThirdButton isVisible={text.visibleThirdButton}></ThirdButton>
+      </View>
     </Container>
   );
 };
 
 export default Questions;
+
+const ThirdButton = ({ isVisible }) => {
+  return (
+    <TouchableOpacity
+      style={{ display: isVisible ? 'flex' : 'none' }}
+      onPress={() => console.log('세번째 버튼 클릭')}
+    >
+      <Text style={{ color: '#000000' }}>세번째 버튼</Text>
+    </TouchableOpacity>
+  );
+};
+
+// const restartButton = ({ isVisible } ) => {
+//   return (
+//     <TouchableOpacity
+//       style={styles.button}
+//           onPress={() =>
+//             navigation.reset({ routes: [{ name: 'Home' }] })}
+//             >
+//         <Text style={{color: '#000000'}}>다시 하기</Text>
+//     </TouchableOpacity>
+//   )
+// }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+});
+
+function updateResultList(data) {
+  resultList.luck += data.luck;
+  resultList.athleticity += data.athleticity;
+  resultList.iq += data.iq;
+  resultList.emotion += data.emotion;
+  resultList.money += data.money;
+  resultList.mbtiE += data.mbtiE;
+  resultList.mbtiI += data.mbtiI;
+  resultList.mbtiS += data.mbtiS;
+  resultList.mbtiN += data.mbtiN;
+  resultList.mbtiT += data.mbtiT;
+  resultList.mbtiF += data.mbtiF;
+  resultList.mbtiJ += data.mbtiJ;
+  resultList.mbtiP += data.mbtiP;
+}

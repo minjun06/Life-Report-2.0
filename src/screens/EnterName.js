@@ -24,7 +24,6 @@ const EnterName = ({ navigation }) => {
       return;
     }
     //저장
-    setText('aaaaaaaaaaaa');
   };
 
   const items = [

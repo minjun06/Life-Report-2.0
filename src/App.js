@@ -1,17 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
 //import Button from './components/Button';
 import styled from 'styled-components/native';
 import Navigation from './navigations';
 import { Audio, AVPlaybackStatus, Video } from 'expo-av';
+import { SafeAreaProvider, useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 
 
-// const Container = styled.View`
-//     flex: 1;
-//     background-color: #fff;
-//     align-items: center;
-//     justify-content: center;
-// `;
+const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+});
 const sound = new Audio.Sound();
 
 const playSound = async () => {
@@ -32,7 +37,14 @@ const playSound = async () => {
 
 export default function App() {
   //playSound();
-  return <Navigation></Navigation>;
+  return (
+    <View style = {{flex: 1}}>
+      <StatusBar></StatusBar>
+      <Navigation>
+      </Navigation>
+    </View>
+      
+  );
 }
 
 // export default function App() {
