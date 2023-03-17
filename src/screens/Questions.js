@@ -25,50 +25,57 @@ const StyledText = styled.Text`
 const page10 = {
   //title: "제목",
   //question: "무언가 반짝인다",
-  buttonTop: {message: '움직인다', luck: 20, athleticity: -10},
-  buttonBottom: {message: '가만히 지켜본다'},
-  imgUrl: require('../images/page10.png'),
+  buttonTop: {message: '움직인다', luck: 0, athleticity: 20, iq: 10, emotion: 0, money: 0, mbtiE: 5, mbtiI: 0, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
+  buttonBottom: {message: '가만히 지켜본다', luck: 0, athleticity: -10, iq: 0, emotion: 0, money: 0, mbtiE: 0, mbtiI: 10, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
+  imgUrl: require('../images/10.png'),
 };
 
 const page11 = {
-  buttonTop: {message: '뭔가.... 주기 싫다.', luck: -15, athleticity: -10},
-  buttonBottom: {message: '나눠 먹어야 착한 어린이!'},
-  imgUrl: require('../images/page10.png'),
+  buttonTop: {message: '뭔가.... 주기 싫다.', luck: 0, athleticity: 0, iq: 0, emotion: -10, money: 3000, mbtiE: 0, mbtiI: 10, mbtiS: 0, mbtiN: 0, mbtiT: 5, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
+  buttonBottom: {message: '나눠 먹어야 착한 어린이!', luck: 5, athleticity: 0, iq: 0, emotion: 30, money: -1000, mbtiE: 5, mbtiI: 0, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 20, mbtiJ: 0, mbtiP: 0 },
+  imgUrl: require('../images/11.png'),
 };
 
 const page12 = {
-  buttonTop: {message: '빌려준다'},
-  buttonBottom: {message: '안 빌려준다'},
+  buttonTop: {message: '빌려준다', luck: 10, athleticity: 0, iq: 0, emotion: 20, money: -10000, mbtiE: 20, mbtiI: 0, mbtiS: 0, mbtiN: 0, mbtiT: 0, mbtiF: 20, mbtiJ: 0, mbtiP: 0 },
+  buttonBottom: {message: '안 빌려준다', luck: -20, athleticity: 0, iq: 0, emotion: -5, money: 15000, mbtiE: 0, mbtiI: 10, mbtiS: 0, mbtiN: 0, mbtiT: 5, mbtiF: 0, mbtiJ: 0, mbtiP: 0 },
+  imgUrl: require('../images/12.png'),
 };
 
 const page13 = {
-  buttonTop: {message: '반짝반짝! 너무 궁금해! ㅎㅎ'},
-  buttonBottom: {message: '아주 조~금 수상한거 같기도?'},
+  buttonTop: {message: '반짝반짝! 너무 궁금해! ㅎㅎ', luck: -10, athleticity: 10, iq: 0, emotion: 5, money: 0, mbtiE: 5, mbtiI: 0, mbtiS: 0, mbtiN: 5, mbtiT: 0, mbtiF: 5, mbtiJ: 0, mbtiP: 10 },
+  buttonBottom: {message: '아주 조~금 수상한거 같기도?', luck: 0, athleticity: 0, iq: 0, emotion: 0, money: 0, mbtiE: 0, mbtiI: 10, mbtiS: 5, mbtiN: 0, mbtiT: 5, mbtiF: 0, mbtiJ: 5, mbtiP: 0 },
+  imgUrl: require('../images/13.png'),
 };
 
 const page14 = {
   buttonTop: "'나 집에 가려고!' (피하자)",
   buttonBottom: "'그냥 있어!' (나랑 놀아줘)",
+  imgUrl: require('../images/14.png'),
 };
 
 const page15 = {
   buttonTop: 'ㅇㅇ 피방ㄱ',
   buttonBottom: '아, 안된다니까 ㅡㅡ',
+  imgUrl: require('../images/15.png'),
 };
 
 const page16 = {
   buttonTop: '두근두근 연애부터 해야지♡',
   buttonBottom: '난 인싸가 될래! 학생회 해야지!',
+  imgUrl: require('../images/16.png'),
 };
 
 const page17 = {
   buttonTop: '내가 가장 잘하는 일',
   buttonBottom: '내가 가장 좋아하는 일',
+  imgUrl: require('../images/17.png'),
 };
 
 const page18 = {
   buttonTop: '머리 벗겨지셨어요.',
   buttonBottom: '(모른척한다..)',
+  imgUrl: require('../images/18.png'),
 };
 
 const page19 = {
@@ -147,6 +154,17 @@ const dataList = [
 const resultList = {
     luck: 0,
     athleticity: 0,
+    iq: 0,
+    emotion: 0,
+    money: 0,
+    mbtiE: 0,
+    mbtiI: 0,
+    mbtiS: 0,
+    mbtiN: 0,
+    mbtiT: 0,
+    mbtiF: 0,
+    mbtiJ: 0,
+    mbtiP: 0,
 };
 
 
@@ -160,16 +178,46 @@ const Questions = ({ navigation, route }) => {
   });
   const onChangeText = (isTop) => {
     if (isTop) {
-        resultList.luck+=dataList[pageNum].buttonTop.luck;
+      resultList.luck+=dataList[pageNum].buttonTop.luck;
+      resultList.athleticity+=dataList[pageNum].buttonTop.athleticity;
+      resultList.iq+=dataList[pageNum].buttonTop.iq;
+      resultList.emotion+=dataList[pageNum].buttonTop.emotion;
+      resultList.money+=dataList[pageNum].buttonTop.money;
+      resultList.mbtiE+=dataList[pageNum].buttonTop.mbtiE;
+      resultList.mbtiI+=dataList[pageNum].buttonTop.mbtiI;
+      resultList.mbtiS+=dataList[pageNum].buttonTop.mbtiS;
+      resultList.mbtiN+=dataList[pageNum].buttonTop.mbtiN;
+      resultList.mbtiT+=dataList[pageNum].buttonTop.mbtiT;
+      resultList.mbtiF+=dataList[pageNum].buttonTop.mbtiF;
+      resultList.mbtiJ+=dataList[pageNum].buttonTop.mbtiJ;
+      resultList.mbtiP+=dataList[pageNum].buttonTop.mbtiP;
     } else {
-        resultList.luck+=dataList[pageNum].buttonBottom.luck;
+      resultList.luck+=dataList[pageNum].buttonBottom.luck;
+      resultList.athleticity+=dataList[pageNum].buttonBottom.athleticity;
+      resultList.iq+=dataList[pageNum].buttonBottom.iq;
+      resultList.emotion+=dataList[pageNum].buttonBottom.emotion;
+      resultList.money+=dataList[pageNum].buttonBottom.money;
+      resultList.mbtiE+=dataList[pageNum].buttonBottom.mbtiE;
+      resultList.mbtiI+=dataList[pageNum].buttonBottom.mbtiI;
+      resultList.mbtiS+=dataList[pageNum].buttonBottom.mbtiS;
+      resultList.mbtiN+=dataList[pageNum].buttonBottom.mbtiN;
+      resultList.mbtiT+=dataList[pageNum].buttonBottom.mbtiT;
+      resultList.mbtiF+=dataList[pageNum].buttonBottom.mbtiF;
+      resultList.mbtiJ+=dataList[pageNum].buttonBottom.mbtiJ;
+      resultList.mbtiP+=dataList[pageNum].buttonBottom.mbtiP;
     } 
     setText({
         topMessage: dataList[++pageNum].buttonTop.message,
         bottomMessage: dataList[pageNum].buttonBottom.message,
         imgUrl: dataList[pageNum].imgUrl,
     });
-    console.log(resultList.luck)
+    console.log("luck:" + resultList.luck)
+    console.log("atheletic:" + resultList.athleticity)
+    console.log("iq:" + resultList.iq)
+    console.log("emotion:" + resultList.emotion)
+    console.log("money:" + resultList.money)
+    console.log("=============:")
+
   };
 
   return (
