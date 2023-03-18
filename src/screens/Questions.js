@@ -292,21 +292,21 @@ const dataList = [
   page11,
   page12,
   page13,
-  page14,
-  page15,
-  page16,
-  page17,
-  page18,
-  page19,
-  page20,
-  page21,
-  page22,
-  page23,
-  page24,
-  page25,
-  page26,
-  page27,
-  page29,
+  // page14,
+  // page15,
+  // page16,
+  // page17,
+  // page18,
+  // page19,
+  // page20,
+  // page21,
+  // page22,
+  // page23,
+  // page24,
+  // page25,
+  // page26,
+  // page27,
+  // page29,
 ];
 
 const resultList = {
@@ -338,6 +338,10 @@ const Questions = ({ navigation, route }) => {
     visibleThirdButton: false,
   });
   const onChangeText = (isTop) => {
+    if (pageNum == dataList.length - 1) {
+      navigation.navigate('ResultPage', { resultList })
+      return;
+    }
     //죽는경우
     if (isTop && dataList[pageNum].buttonTop.isDead) {
     } else if (!isTop && dataList[pageNum].buttonBottom.isDead) {
@@ -394,14 +398,14 @@ const Questions = ({ navigation, route }) => {
           alignItems: 'center',
         }}
       >
-        <TextInput
+        {/* <TextInput
           onSubmitEditing={compareNumber}
           onChangeText={onChangeNumber}
           returnKeyType="done"
           placeholder="이름을 입력하세요"
-        />
+        /> */}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.button}
           onPress={() => {
             pageNum = 0;
@@ -409,7 +413,7 @@ const Questions = ({ navigation, route }) => {
           }}
         >
           <Text style={{ color: '#ffffff' }}>다시 하기</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Button title={text.topMessage} onPress={() => onChangeText(true)} />
         <Button
           title={text.bottomMessage}

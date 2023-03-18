@@ -5,7 +5,6 @@ import StackNav from './Stack';
 const Navigation = () => {
     return (
         <NavigationContainer>
-            
             <StackNav />
         </NavigationContainer>
     );

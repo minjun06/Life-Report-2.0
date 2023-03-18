@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Button from '../components/Button';
 import { useState } from 'react';
+import { Audio, AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
 import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
 
 const Container = styled.View`
@@ -16,6 +17,22 @@ const StyledText = styled.Text`
   margin: 10px;
 `;
 
+const styles = StyleSheet.create({
+  // container: {
+  //   flex: 1,
+  //   alignItems: 'center',
+  //   justifyContent: 'center'
+  // },
+  videoContainer: {
+    width: '100%',
+    height: '100%'
+  },
+  video: {
+    width: '100%',
+    height: '100%'
+  },
+});
+
 const EnterName = ({ navigation }) => {
   const [text, setText] = useState('');
   const onChangeText = (payLoad) => setText(payLoad);
@@ -27,17 +44,30 @@ const EnterName = ({ navigation }) => {
   };
 
   const items = [
-    { id: 1, name: '가보자고~' },
+    { id: 1, name: '입력' },
     //   { id: 2, name: 'Expo' },
     //   { id: 3, name: 'Nav' },
   ];
 
   return (
     <Container>
-      <View style={{ width: '100%', height: '100%' }}>
+      {/* <View style={{ width: '100%', height: '100%' }}>
         <Image
           source={require('./../images/gifExample.gif')}
           style={{ width: '100%', height: '100%' }}
+        />
+      </View> */}
+      <View style={styles.videoContainer}>
+        <Video
+          source={{
+            uri: 'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111478/LifeReport/tl1hjsanqglp0gct48gn.mp4',
+          }}
+          shouldPlay
+          isLooping
+          resizeMode='contain'
+          isMuted
+          style={styles.video}
+          videoStyle={styles.video}
         />
       </View>
       <View
@@ -64,7 +94,7 @@ const EnterName = ({ navigation }) => {
           <Button
             key={id}
             title={name}
-            onPress={() => navigation.navigate('Chat', { id, name: text })}
+            onPress={() => navigation.navigate('Intro', { id, name: text })}
           />
         ))}
       </View>

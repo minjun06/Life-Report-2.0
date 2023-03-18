@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5,
-    height: 40,
-    backgroundColor: 'rgba(0, 0, 0, 0)'
+    padding: 10,
+    height: 80,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
 });
 
@@ -38,21 +38,21 @@ const Home = ({ navigation }) => {
       <View style={styles.videoContainer}>
         <Video
           source={{
-            uri: 'https://res.cloudinary.com/dq26e5ls4/video/upload/v1678840772/samples/yt1dzx8rmppcuz2kwofl.mp4',
+            uri: 'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111253/LifeReport/bsyitxecu2hveuucakt7.mp4',
           }}
           shouldPlay
           isLooping
-          resizeMode='cover'
+          resizeMode='contain'
           isMuted
           style={styles.video}
           videoStyle={styles.video}
         />
       </View>
 
-      {<View
+      <View
         style={{
           position: 'absolute',
-          top: '70%',
+          top: '66%',
           left: 0,
           right: 0,
           bottom: 0,
@@ -62,9 +62,9 @@ const Home = ({ navigation }) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('EnterName')}>
-          <Text >버튼텍스트</Text>
+          <Text >                                                            </Text>
         </TouchableOpacity>
-      </View>}
+      </View>
     </View>
   );
 };
