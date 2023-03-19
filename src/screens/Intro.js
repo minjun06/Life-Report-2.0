@@ -1,10 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Audio, AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { Video } from 'expo-av';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components/native';
-import Button from '../components/Button';
 
 var pageList = [
   'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111478/LifeReport/tl1hjsanqglp0gct48gn.mp4',
@@ -16,12 +13,12 @@ var pageList = [
   'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111583/LifeReport/ulaozojdptf4tnvplwb3.mp4',
   'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111597/LifeReport/gnictrw7mtodgnodbzcm.mp4',
 ];
-// var pageNum = 0;
 
 const Intro = ({ navigation, route }) => {
   useEffect(() => {
     setPageNum(0);
   }, []);
+
   const [pageNum, setPageNum] = useState(0);
 
   const [data, setData] = useState(pageList[pageNum]);
@@ -30,76 +27,32 @@ const Intro = ({ navigation, route }) => {
       navigation.navigate('Questions');
       return;
     }
-
-    //setData(pageList[++pageNum]);
     setData(pageList[pageNum + 1]);
+    setPageNum(pageNum + 1);
   };
   return (
-    <Container>
-      <View style={styles.videoContainer}>
-        <Video
-          source={{
-            //uri: 'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111478/LifeReport/tl1hjsanqglp0gct48gn.mp4',
-            uri: data,
-          }}
-          shouldPlay
-          //isLooping
-          resizeMode="contain"
-          isMuted
-          style={styles.video}
-          videoStyle={styles.video}
-        />
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        ></View>
-        <View
-          style={{
-            position: 'absolute',
-            top: '66%',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            //   height: 200,
-            //   width: 100,
-          }}
-        >
-          {/* <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('Questions')}
-          >
-            <Text> </Text>
-          </TouchableOpacity> */}
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => onChangeText()}
-          >
-            <Text>                                </Text>
-
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Container>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={1}
+      onPress={() => onChangeText()}
+    >
+      <Video
+        source={{
+          uri: data,
+        }}
+        shouldPlay
+        //isLooping
+        resizeMode="contain"
+        isMuted
+        style={styles.video}
+        videoStyle={styles.video}
+      ></Video>
+      <Text style={{fontSize: 15, fontFamily: 'my-second-font', position: 'absolute', top: 650, color: 'white'}}>터치하세요</Text>
+    </TouchableOpacity>
   );
 };
 
 export default Intro;
-
-const Container = styled.View`
-  flex: 1;
-  //background-color: #fff;
-  align-items: center;
-  justify-content: center;
-`;
 
 const styles = StyleSheet.create({
   container: {
@@ -107,19 +60,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  videoContainer: {
-    width: '100%',
-    height: '100%',
-  },
   video: {
     width: '100%',
     height: '100%',
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    flex: 0.9,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
 });

@@ -13,7 +13,7 @@ global.userName = "";
 global.myPlaySound = async () => {
   try {
     // 저장한 path로 음원 파일 불러오기
-    await sound.loadAsync(require('./images/eventHorizon.mp3'));
+    await sound.loadAsync(require('./images/bgm.wav'));
     // await sound.loadAsync({
     //   uri: 'https://file-examples.com/storage/fe137d1f80640cf1e98d9f6/2017/11/file_example_MP3_700KB.mp3',
     // });
@@ -35,10 +35,11 @@ global.myStopSound = async () => {
 }
 
 export default function App() {
-  //  global.myPlaySound();
+    global.myPlaySound();
 
   const [fontsLoaded] = useFonts({
     'my-custom-font': require('../assets/fonts/ChosunCentennial.ttf'),
+    'my-second-font' : require('../assets/fonts/SUIT-Regular.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -51,7 +52,6 @@ export default function App() {
 
   return (
     <HelmetProvider>
-      
       <Helmet>
         <script defer src="https://cdn.swygbro.com/public/widget/swyg-widget.js"></script>
         <title>인생 성적표</title>

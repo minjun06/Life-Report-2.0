@@ -4,13 +4,15 @@ import { View, Image } from 'react-native';
 
 const MyImage = ({ ratio, source }) => {
     return (
-            <Image
-                style={{ width: '100%', height: undefined, maxWidth: 410, aspectRatio: ratio }}
-                resizeMode="contain"
-                source={source}
-                containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
-            >
-            </Image>
+            <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
+                <Image
+                    style={{ width: '100%', height: undefined, maxWidth: 410, aspectRatio: ratio }}
+                    resizeMode="contain"
+                    source={source}
+                    containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+                >
+                </Image>
+            </View>
     );
 };
 

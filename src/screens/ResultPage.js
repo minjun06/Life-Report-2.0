@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Image, Text, View, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, ScrollView, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
+// import {  } from 'react-native-gesture-handler';
 import Button from '../components/Button';
 import MyImage from '../components/MyImage';
 import ResultTextView from '../components/ResultTextView';
@@ -12,7 +12,7 @@ const jobList = [
   ['연구원', '검사', '의사', '교수', '보건 교사', '역사 선생님', '고고학자', '수학자', '인생성적표 개발자', '외교관', '영양사'],
   ['부끄러움컨설턴트', '애완동물탐정가', '사과전문가(먹는사과아님)', '심리상담사', '교황'],
   ['대통령', '유튜버', '재벌', '장의사', '장기취급전문가', '횟집 사장'],
-  ['E', 'E', 'E'],
+  ['유튜버', '아이돌', '외교관'],
   ['I', 'I', 'I'],
   ['S', 'S', 'S'],
   ['N', 'N', 'N'],
@@ -31,14 +31,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   button: {
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    position: 'absolute',
     alignItems: 'center',
     padding: 5,
-    
-    backgroundColor: 'rgba(0, 0, 0, 0)',
+    justifyContent: 'flex-end',
+    bottom: 150,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    margin: 15, borderColor: 'white', borderWidth:1, width:200, height: 40, borderRadius:15
+    //fontFamily: 'my-custom-font'
   },
+  
 });
 
 var list = [];
@@ -75,7 +79,7 @@ const ResultPage = ({ navigation, route }) => {
       <View
         style={{
           position: 'absolute',
-          top: '10%',
+          top: 0,
           left: 0,
           right: 0,
           bottom: 0,
@@ -83,23 +87,29 @@ const ResultPage = ({ navigation, route }) => {
           alignItems: 'center',
         }}
       >
-      <ResultTextView top={100} left={0} right={140} bottom={0} text={global.userName}></ResultTextView>
-      <Text>67 세</Text>
-      <ResultTextView top={200} left={0} right={140} bottom={0} text={'ISTP'}></ResultTextView>
-      <ResultTextView top={300} left={0} right={140} bottom={0} text={job}></ResultTextView>
-      <Text>A   C   B   B</Text>
-      <ResultTextView top={400} left={0} right={140} bottom={0} text={dead}></ResultTextView>
-      <ResultTextView top={500} left={0} right={140} bottom={0} text={personality}></ResultTextView>
-      <TouchableOpacity
+        <ResultTextView top={98} left={100} text={global.userName}></ResultTextView>
+        <ResultTextView top={98} left={245} text={'67세'}></ResultTextView>
+        <ResultTextView top={127} left={100} text={'ISTP'}></ResultTextView>
+        <ResultTextView top={159} left={100} text={job}></ResultTextView>
+
+        {/* 이수과정 */}
+        <ResultTextView top={218} left={99} fontSize={40} text={'A'}></ResultTextView>
+        <ResultTextView top={218} left={154} fontSize={40} text={'C'}></ResultTextView>
+        <ResultTextView top={218} left={218} fontSize={40} text={'B'}></ResultTextView>
+        <ResultTextView top={218} left={275} fontSize={40} text={'B'}></ResultTextView>
+
+        <ResultTextView top={310} left={100} text={dead}></ResultTextView>
+        <ResultTextView top={400} left={100} text={personality}></ResultTextView>
+        <TouchableOpacity
           style={styles.button}
           onPress={() => {
             //pageNum = 0;
-            navigation.reset({  routes: [{ name: 'Home' }] });
+            navigation.reset({ routes: [{ name: 'Home' }] });
           }}
         >
-          <Text style={{ color: 'grey', fontSize: 30 }}>다시 하기</Text>
-        </TouchableOpacity>  
-        </View>
+          <Text style={{ color: 'white', fontSize: 22, fontFamily: 'my-custom-font' }}>인생 다시 시작하기</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

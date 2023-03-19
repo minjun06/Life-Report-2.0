@@ -280,7 +280,7 @@ const page25 = {
 };
 
 const page26 = {
-  buttonTop: {message:'반년치 월급 받고 일찍 퇴직한다.',},
+  buttonTop: {message:'반년치 월급 받고 퇴직한다.',},
   buttonBottom: {message:'에이 몰라 일단 버텨!',},
   imgUrl: require('../images/26.png'),
 };
@@ -290,13 +290,16 @@ const page27 = {
   buttonBottom: {message:'화끈하게 빨간색 정장',},
   ThirdButton: {message:"내가 아끼는 갈색 정장",},
   imgUrl: require('../images/27.png'),
-  visibleThirdButton: true,
+  visibleThirdButton: false,
+  //true로 고치기
 };
+
+//const 로또 페이지 만들기!!
 
 const page29 = {
   buttonTop: {message:'가족/친구에게 남긴다.',},
   buttonBottom: {message:'사회에 환원한다.',},
-  imgUrl: require('../images/28.png'),
+  imgUrl: require('../images/29.png'),
 };
 
 const dataList = [
@@ -311,13 +314,13 @@ const dataList = [
   page18,
   page19,
   page20,
-  page21,
+  //page21,
   page22,
-  page23,
+  //page23,
   page24,
   page25,
   page26,
-  page27,
+  //page27,
   page29,
 ];
 
@@ -382,8 +385,7 @@ const Questions = ({ navigation, route }) => {
 
     //죽는경우
     if (isTop && dataList[pageNum].buttonTop.isDead || !isTop && dataList[pageNum].buttonBottom.isDead) {
-      // navigation.navigate('ResultPage', { resultList })
-      navigation.navigate('ResultPage', { resultList })
+      navigation.navigate('Conclusion', { resultList })
     } else {
       if (isTop) {
         updateResultList(resultList, dataList[pageNum].buttonTop);
@@ -437,23 +439,7 @@ const Questions = ({ navigation, route }) => {
           justifyContent: 'flex-start',
           alignItems: 'center',
         }}
-      >
-        {/* <TextInput
-          onSubmitEditing={compareNumber}
-          onChangeText={onChangeNumber}
-          returnKeyType="done"
-          placeholder="이름을 입력하세요"
-        /> */}
-
-        {/* <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            pageNum = 0;
-            navigation.reset({ routes: [{ name: 'Home' }] });
-          }}
-        >
-          <Text style={{ color: '#ffffff' }}>다시 하기</Text>
-        </TouchableOpacity> */}
+      >    
         <Button title={text.topMessage} onPress={() => onChangeText(true)} />
         <Button
           title={text.bottomMessage}
@@ -473,8 +459,9 @@ const ThirdButton = ({ isVisible }) => {
       style={{ display: isVisible ? 'flex' : 'none' }}
       onPress={() => console.log('세번째 버튼 클릭')}
     >
-      <Text style={{ color: '#000000' }}>세번째 버튼</Text>
+      {/* <Text style={{ color: '#000000' }}>세번째 버튼</Text> */}
     </TouchableOpacity>
+    
   );
 };
 
