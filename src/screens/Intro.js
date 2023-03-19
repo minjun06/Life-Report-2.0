@@ -33,7 +33,7 @@ const Intro = ({ navigation, route }) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      activeOpacity={1}
+      //activeOpacity={1}
       onPress={() => onChangeText()}
     >
       <Video

@@ -56,12 +56,12 @@ export default function App() {
         <script defer src="https://cdn.swygbro.com/public/widget/swyg-widget.js"></script>
         <title>인생 성적표</title>
         <meta
-          name="description"
-          content="해당 페이지 설명 (ex. SWYG에서 다양한 메타 콘텐츠와 개발자를 만나보세요.)"
+          name="설명 / description"
+          content="'삐빅- 인생 성적표가 산출 되었습니다.' 태어날 때부터 죽을 때까지 내 선택에 따라 달라지는 인생 성적표를 받아보자!"
         />
         <meta
-          name="keywords"
-          content="swyg,기획자,개발자,메타콘텐츠,..."
+          name="카테고리 / keywords"
+          content="개발, 개발자, 디자인, 디자이너, 메타콘텐츠, 심리테스트, MBTI, 시뮬레이션, 게임, 비주얼노벨, 킬링타임, 병맛, 인생, 성적, 유형테스트, 가상체험, 밈, 짤"
         />
       </Helmet>
       <StatusBar></StatusBar>
