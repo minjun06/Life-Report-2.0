@@ -13,8 +13,11 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
+  font-family: my-custom-font;
   font-size: 30px;
   margin: 10px;
+  max-width: 210px;
+  color: white;
 `;
 
 const styles = StyleSheet.create({
@@ -25,7 +28,8 @@ const styles = StyleSheet.create({
   // },
   videoContainer: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    maxWidth: 410
   },
   video: {
     width: '100%',
@@ -34,12 +38,16 @@ const styles = StyleSheet.create({
 });
 
 const EnterName = ({ navigation }) => {
+  //global.myStopSound();
+
   const [text, setText] = useState('');
-  const onChangeText = (payLoad) => setText(payLoad);
+  const onChangeText = (payLoad) => {    
+    setText(payLoad);
+  }
   const addName = () => {
     if (text === '') {
       return;
-    }
+    }    
     //저장
   };
 
@@ -64,7 +72,7 @@ const EnterName = ({ navigation }) => {
           }}
           shouldPlay
           isLooping
-          resizeMode='contain'
+          resizeMode='cover'
           isMuted
           style={styles.video}
           videoStyle={styles.video}
@@ -79,22 +87,35 @@ const EnterName = ({ navigation }) => {
           bottom: 0,
           justifyContent: 'center',
           alignItems: 'center',
+          borderBottomColor: '#ffffff',
+          borderBottomWidth: 1,
+          
         }}
       >
         <StyledText>성적표 산출을 위한 이름을 입력해주세요</StyledText>
         {/* <Text>text저장된것: {text}!</Text> */}
         <TextInput
+          styles={{fontFamily: 'my-custom-font',
+          }}
+          style={{borderColor: 'white', borderWidth: 2, padding: 10, fontSize: 20, color: 'white'}}
           onSubmitEditing={addName}
           onChangeText={onChangeText}
           returnKeyType="done"
-          placeholder="이름을 입력하세요"
+          //placeholder="                                         "
+          cursorColor={'white'}
+          maxLength={5}
+          
         />
 
         {items.map(({ id, name }) => (
           <Button
             key={id}
             title={name}
-            onPress={() => navigation.navigate('Intro', { id, name: text })}
+            onPress={() => {              
+              global.userName = text              
+              // navigation.navigate('Intro', { id, name: text })}
+              navigation.navigate('Questions', { id, name: text })}
+            }
           />
         ))}
       </View>

@@ -1,25 +1,16 @@
-// import { StatusBar } from 'expo-status-bar';
+import { useState, useEffect, useCallback } from 'react';
+//import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
-//import Button from './components/Button';
-import styled from 'styled-components/native';
 import Navigation from './navigations';
 import { Audio, AVPlaybackStatus, Video } from 'expo-av';
-import { SafeAreaProvider, useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
+import { useFonts } from 'expo-font';
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
-});
 const sound = new Audio.Sound();
 
-const playSound = async () => {
+global.userName = "";
+
+global.myPlaySound = async () => {
   try {
     // 저장한 path로 음원 파일 불러오기
     await sound.loadAsync(require('./images/eventHorizon.mp3'));
@@ -35,17 +26,49 @@ const playSound = async () => {
   }
 };
 
-export default function App() {
-  //playSound();
-  return (
-    <View style = {{flex: 1}}>
-      <StatusBar></StatusBar>
-      <Navigation>
-      </Navigation>
-    </View>
-      
-  );
+global.myStopSound = async () => {
+  try {
+    await sound.stopAsync();
+  } catch (error) {
+    console.log(error);
+  }
 }
+
+export default function App() {
+  //  global.myPlaySound();
+
+  const [fontsLoaded] = useFonts({
+    'my-custom-font': require('../assets/fonts/ChosunCentennial.ttf'),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  return (
+    <HelmetProvider>
+      
+      <Helmet>
+        <script defer src="https://cdn.swygbro.com/public/widget/swyg-widget.js"></script>
+        <title>인생 성적표</title>
+        <meta
+          name="description"
+          content="해당 페이지 설명 (ex. SWYG에서 다양한 메타 콘텐츠와 개발자를 만나보세요.)"
+        />
+        <meta
+          name="keywords"
+          content="swyg,기획자,개발자,메타콘텐츠,..."
+        />
+      </Helmet>
+      <StatusBar></StatusBar>
+      <Navigation onLayout={onLayoutRootView}></Navigation>
+    </HelmetProvider>
+  )
+};
 
 // export default function App() {
 //   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Button from '../components/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import MyImage from '../components/MyImage';
 
 const Container = styled.View`
   flex: 1;
@@ -101,7 +102,6 @@ const page11 = {
     mbtiP: 0,
   },
   imgUrl: require('../images/11.png'),
-  visibleThirdButton: true,
 };
 
 const page12 = {
@@ -156,6 +156,7 @@ const page13 = {
     mbtiF: 5,
     mbtiJ: 0,
     mbtiP: 10,
+    isDead: true
   },
   buttonBottom: {
     message: '아주 조~금 수상한거 같기도?',
@@ -173,7 +174,7 @@ const page13 = {
     mbtiJ: 5,
     mbtiP: 0,
   },
-  imgUrl: require('../images/13.png'),
+  imgUrl: require('../images/13.png'),  
 };
 
 const page14 = {
@@ -213,78 +214,89 @@ const page14 = {
 };
 
 const page15 = {
-  buttonTop: 'ㅇㅇ 피방ㄱ',
-  buttonBottom: '아, 안된다니까 ㅡㅡ',
+  buttonTop: {message:'ㅇㅇ 피방ㄱ',},
+  buttonBottom: {message:'아, 안된다니까 ㅡㅡ',},
   imgUrl: require('../images/15.png'),
 };
 
 const page16 = {
-  buttonTop: '두근두근 연애부터 해야지♡',
-  buttonBottom: '난 인싸가 될래! 학생회 해야지!',
+  buttonTop: {message:'두근두근 연애부터 해야지♡',},
+  buttonBottom: {message:'난 인싸가 될래! 학생회 해야지!',},
   imgUrl: require('../images/16.png'),
 };
 
 const page17 = {
-  buttonTop: '내가 가장 잘하는 일',
-  buttonBottom: '내가 가장 좋아하는 일',
+  buttonTop: {message:'내가 가장 잘하는 일',},
+  buttonBottom: {message:'내가 가장 좋아하는 일',},
   imgUrl: require('../images/17.png'),
 };
 
 const page18 = {
-  buttonTop: '머리 벗겨지셨어요.',
-  buttonBottom: '(모른척한다..)',
+  buttonTop: {message:'머리 벗겨지셨어요.',},
+  buttonBottom: {message:'(모른척한다..)',},
   imgUrl: require('../images/18.png'),
 };
 
 const page19 = {
-  buttonTop: '언젠가는 하겠죠~ (귀찮다..)',
-  buttonBottom: '구체적인 계획을 얘기한다.',
+  buttonTop: {message:'언젠가는 하겠죠~ (귀찮다..)',},
+  buttonBottom: {message:'구체적인 계획을 얘기한다.',},
+  imgUrl: require('../images/19.png'),
 };
 
 const page20 = {
-  buttonTop: '어어 날씨 좋다. (모른척)',
-  buttonBottom: '진지하게 계획을 세운다.',
+  buttonTop: {message:'어어 날씨 좋다. (모른척)',},
+  buttonBottom: {message:'진지하게 계획을 세운다.',},
+  imgUrl: require('../images/20.png'),
 };
 
 const page21 = {
-  buttonTop: '북적북적 게스트하우스!',
-  buttonBottom: '편안하고 안락한 호텔!',
+  buttonTop: {message:'북적북적 게스트하우스!',},
+  buttonBottom: {message:'편안하고 안락한 호텔!',},
+  imgUrl: require('../images/21.png'),
 };
 
 const page22 = {
-  buttonTop: '힘들어도 자기계발이지',
-  buttonBottom: '인간은 좀 쉬어줘야 해',
+  buttonTop: {message:'힘들어도 자기계발이지',},
+  buttonBottom: {message:'인간은 좀 쉬어줘야 해',},
+  imgUrl: require('../images/22.png'),
 };
 
 const page23 = {
-  buttonTop: '그래, 튼튼하게만 자라렴',
-  buttonBottom: '안되겠다, 학원을 보내야겠어',
+  buttonTop: {message:'그래, 튼튼하게만 자라렴',},
+  buttonBottom: {message:'안되겠다, 학원을 보내야겠어',},
+  imgUrl: require('../images/23.png'),
 };
 
 const page24 = {
-  buttonTop: '인류최초! 이왕이면 새로운 곳',
-  buttonBottom: '달과 화성을 보고 오는 코스',
+  buttonTop: {message:'인류최초! 이왕이면 새로운 곳',},
+  buttonBottom: {message:'달과 화성을 보고 오는 코스',},
+  imgUrl: require('../images/24.png'),
 };
 
 const page25 = {
-  buttonTop: '원래 외계인 친구 갖고 싶었어',
-  buttonBottom: '뭐야 무서워 도망치자',
+  buttonTop: {message:'원래 외계인 친구 갖고 싶었어',},
+  buttonBottom: {message:'뭐야 무서워 도망치자',},
+  imgUrl: require('../images/25.png'),
 };
 
 const page26 = {
-  buttonTop: '반년치 월급 받고 일찍 퇴직한다.',
-  buttonBottom: '에이 몰라 일단 버텨!',
+  buttonTop: {message:'반년치 월급 받고 일찍 퇴직한다.',},
+  buttonBottom: {message:'에이 몰라 일단 버텨!',},
+  imgUrl: require('../images/26.png'),
 };
 
 const page27 = {
-  buttonTop: '무난하게 검은색 정장',
-  buttonBottom: '화끈하게 빨간색 정장',
-  //buttonExtra: "내가 아끼는 갈색 정장",
+  buttonTop: {message:'무난하게 검은색 정장',},
+  buttonBottom: {message:'화끈하게 빨간색 정장',},
+  ThirdButton: {message:"내가 아끼는 갈색 정장",},
+  imgUrl: require('../images/27.png'),
+  visibleThirdButton: true,
 };
 
 const page29 = {
-  buttonTop: '가족/친구에게 남긴다.',
-  buttonBottom: '사회에 환원한다.',
+  buttonTop: {message:'가족/친구에게 남긴다.',},
+  buttonBottom: {message:'사회에 환원한다.',},
+  imgUrl: require('../images/28.png'),
 };
 
 const dataList = [
@@ -292,44 +304,69 @@ const dataList = [
   page11,
   page12,
   page13,
-  // page14,
-  // page15,
-  // page16,
-  // page17,
-  // page18,
-  // page19,
-  // page20,
-  // page21,
-  // page22,
-  // page23,
-  // page24,
-  // page25,
-  // page26,
-  // page27,
-  // page29,
+  page14,
+  page15,
+  page16,
+  page17,
+  page18,
+  page19,
+  page20,
+  page21,
+  page22,
+  page23,
+  page24,
+  page25,
+  page26,
+  page27,
+  page29,
 ];
 
-const resultList = {
-  luck: 0,
-  athleticity: 0,
-  iq: 0,
-  emotion: 0,
-  money: 0,
-  mbtiE: 0,
-  mbtiI: 0,
-  mbtiS: 0,
-  mbtiN: 0,
-  mbtiT: 0,
-  mbtiF: 0,
-  mbtiJ: 0,
-  mbtiP: 0,
-};
-
 var lottoNumber = Math.floor(Math.random() * 10);
-var pageNum = 0;
 
 const Questions = ({ navigation, route }) => {
-  const [inputText, setInputText] = useState ('');
+
+  useEffect(() => {
+    setPageNum(0);
+    setResultList(
+      {
+        luck: 0,
+        athleticity: 0,
+        iq: 0,
+        emotion: 0,
+        money: 0,
+        mbtiE: 0,
+        mbtiI: 0,
+        mbtiS: 0,
+        mbtiN: 0,
+        mbtiT: 0,
+        mbtiF: 0,
+        mbtiJ: 0,
+        mbtiP: 0,
+      }
+    );
+  }, []);
+
+  const [resultList, setResultList] = useState(
+    {
+      luck: 0,
+      athleticity: 0,
+      iq: 0,
+      emotion: 0,
+      money: 0,
+      mbtiE: 0,
+      mbtiI: 0,
+      mbtiS: 0,
+      mbtiN: 0,
+      mbtiT: 0,
+      mbtiF: 0,
+      mbtiJ: 0,
+      mbtiP: 0,
+    }
+  );
+
+  const [pageNum, setPageNum] = useState(0);
+
+  const [inputText, setInputText] = useState('');
   const onChangeNumber = (payLoad) => setInputText(payLoad);
   const [text, setText] = useState({
     topMessage: dataList[pageNum].buttonTop.message,
@@ -342,21 +379,26 @@ const Questions = ({ navigation, route }) => {
       navigation.navigate('ResultPage', { resultList })
       return;
     }
+
     //죽는경우
-    if (isTop && dataList[pageNum].buttonTop.isDead) {
-    } else if (!isTop && dataList[pageNum].buttonBottom.isDead) {
+    if (isTop && dataList[pageNum].buttonTop.isDead || !isTop && dataList[pageNum].buttonBottom.isDead) {
+      // navigation.navigate('ResultPage', { resultList })
+      navigation.navigate('ResultPage', { resultList })
     } else {
       if (isTop) {
-        updateResultList(dataList[pageNum].buttonTop);
+        updateResultList(resultList, dataList[pageNum].buttonTop);
       } else {
-        updateResultList(dataList[pageNum].buttonBottom);
-      }
+        updateResultList(resultList, dataList[pageNum].buttonBottom);
+      }              
+
       setText({
-        topMessage: dataList[++pageNum].buttonTop.message,
-        bottomMessage: dataList[pageNum].buttonBottom.message,
-        imageUrl: dataList[pageNum].imgUrl,
-        visibleThirdButton: dataList[pageNum].visibleThirdButton,
+        topMessage: dataList[pageNum + 1].buttonTop.message,
+        bottomMessage: dataList[pageNum + 1].buttonBottom.message,
+        imageUrl: dataList[pageNum + 1].imgUrl,
+        visibleThirdButton: dataList[pageNum + 1].visibleThirdButton,
       });
+
+      setPageNum(pageNum + 1);
       console.log('Page Number:' + pageNum);
       console.log('RandomNumber: ' + lottoNumber);
       console.log('luck:' + resultList.luck);
@@ -380,13 +422,11 @@ const Questions = ({ navigation, route }) => {
   };
 
   return (
-    <Container>
-      <View style={{ width: '100%', height: '100%' }}>
-        <Image
-          source={text.imageUrl}
-          style={{ width: '100%', height: '100%' }}
-        />
-      </View>
+    <View style={{flex:1}}>      
+      <MyImage
+        ratio={1080/2177}
+        source={text.imageUrl}>
+      </MyImage>            
       <View
         style={{
           position: 'absolute',
@@ -421,7 +461,7 @@ const Questions = ({ navigation, route }) => {
         />
         <ThirdButton isVisible={text.visibleThirdButton}></ThirdButton>
       </View>
-    </Container>
+    </View>
   );
 };
 
@@ -466,7 +506,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function updateResultList(data) {
+function updateResultList(resultList, data) {
   resultList.luck += data.luck;
   resultList.athleticity += data.athleticity;
   resultList.iq += data.iq;

@@ -16,7 +16,7 @@ const Title = styled.Text`
 const Button = ({ title, onPress }) => {
   return (
     <TouchableOpacity
-      style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', padding: 10, margin: 15 }}
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', padding: 10, margin: 15, borderColor: 'white', borderWidth:2 }}
       onPress={onPress}
       //hitSlop{{bottom:100, top:100, left:100, right:100}}
       pressRetentionOffset={{ bottom: 10, top: 10, left: 10, right: 10 }}

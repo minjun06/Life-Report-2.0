@@ -6,5 +6,6 @@ import VideoPage from './VideoPage';
 import Questions from './Questions';
 import ResultPage from './ResultPage';
 import Intro from './Intro';
+import Conclusion from './Conclusion';
 
-export { Home, EnterName, List, Chat, VideoPage, Questions, ResultPage, Intro };
+export { Home, EnterName, List, Chat, VideoPage, Questions, ResultPage, Intro, Conclusion };

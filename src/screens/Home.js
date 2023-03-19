@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     height: 80,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.0)'
   },
 });
 
@@ -61,6 +61,7 @@ const Home = ({ navigation }) => {
         }}>
         <TouchableOpacity
           style={styles.button}
+          // onPress={() => navigation.navigate('EnterName')}>
           onPress={() => navigation.navigate('EnterName')}>
           <Text >                                                            </Text>
         </TouchableOpacity>
