@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
 import { Video } from 'expo-av';
 import { useState, useEffect } from 'react';
 
 var pageList = [
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679207711/LifeReport/si1jcosdg46qi1a044cl.mp4',
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679529171/LifeReport/jboxpsfma13x4wjfran7.mp4',
   'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679207721/LifeReport/rhqun5rvtytjscbnzfj5.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679207731/LifeReport/zqvinwsjccstfapgf6w8.mp4',
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679529178/LifeReport/gvtfhybtegbzfaw8leqt.mp4',
 ];
 
 const Conclusion = ({ navigation, route }) => {
@@ -37,11 +37,17 @@ const Conclusion = ({ navigation, route }) => {
           shouldPlay
           //isLooping
           resizeMode="contain"
-          isMuted
+          //isMuted
           style={styles.video}
           videoStyle={styles.video}
         />               
         <Text style={{fontSize: 15, fontFamily: 'my-second-font', position: 'absolute', top: 650, color: 'white'}}>터치하세요</Text> 
+        {/* <Image
+          style={{ width: '30%', height: '30%', bottom: 15}}
+          resizeMode="contain"
+          // containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+          source={require('../images/gaddy.png')}>
+        </Image> */}
       </TouchableOpacity>    
   );
 };

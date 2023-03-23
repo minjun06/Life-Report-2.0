@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { useState, useEffect } from 'react'
+import { StyleSheet, ScrollView, Image, Text, View, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 // import {  } from 'react-native-gesture-handler';
 import Button from '../components/Button';
-import MyImage from '../components/MyImage';
+import MyResultImage from '../components/MyResultImage';
 import ResultTextView from '../components/ResultTextView';
 
 const jobList = [
@@ -12,7 +13,7 @@ const jobList = [
   ['연구원', '검사', '의사', '교수', '보건 교사', '역사 선생님', '고고학자', '수학자', '인생성적표 개발자', '외교관', '영양사'],
   ['부끄러움컨설턴트', '애완동물탐정가', '사과전문가(먹는사과아님)', '심리상담사', '교황'],
   ['대통령', '유튜버', '재벌', '장의사', '장기취급전문가', '횟집 사장'],
-  ['유튜버', '아이돌', '외교관'],
+  ['고고학자', '사과전문가(먹는사과아님)', '병아리감별사'],
   ['I', 'I', 'I'],
   ['S', 'S', 'S'],
   ['N', 'N', 'N'],
@@ -37,7 +38,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     justifyContent: 'flex-end',
-    bottom: 150,
+    bottom: 315,
+    //bottom: 150,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     margin: 15, borderColor: 'white', borderWidth:1, width:200, height: 40, borderRadius:15
     //fontFamily: 'my-custom-font'
@@ -66,16 +68,47 @@ const ResultPage = ({ navigation, route }) => {
 
   const sortList = list.sort((a, b) => b.value - a.value);
 
-  const maxJobList = jobList[sortList[0].key];
-  const job = maxJobList[Math.floor(Math.random() * maxJobList.length)];
-  const dead = deadList[Math.floor(Math.random() * deadList.length)];
+  const maxJobList = jobList[sortList[0].key];  
+  
+
+  // const curWidth = Math.min(500, Dimensions.get('window').width);
+  const stanDardWidth = 360
+  const maxWidth = 500
+
+  const [job] = useState(maxJobList[Math.floor(Math.random() * maxJobList.length)]);
+  const [dead] = useState(deadList[Math.floor(Math.random() * deadList.length)]);
+
+  const [ratio, setRatio] = useState((Math.min(maxWidth, Dimensions.get('window').width)) / stanDardWidth);
+  const [padding, setPadding] = useState(Math.max(0, (Dimensions.get('window').width - maxWidth) / 2));
+  
+  
+  useEffect(() => {
+    const updateWidth = () => {
+      
+      const mPadding = Math.max(0, (Dimensions.get('window').width - maxWidth) / 2)
+      const mRatio = (Math.min(maxWidth, Dimensions.get('window').width)) / stanDardWidth
+      setPadding(mPadding)      
+      setRatio(mRatio);      
+    };
+        
+    
+    Dimensions.addEventListener('change', updateWidth);
+
+    return () => {
+      Dimensions.removeEventListener('change', updateWidth);
+    };
+  }, []);
+
+  const num = 10;
 
   return (
-    <ScrollView>
-      <MyImage
-        ratio={1080 / 3389}
-        source={require('../images/result_img.png')}>
-      </MyImage>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <MyResultImage
+        //ratio={1080 / 3389}
+        ratio={1080 / 3881}
+        //num='100'
+        source={require('../images/resultLong.jpg')}>
+      </MyResultImage>
       <View
         style={{
           position: 'absolute',
@@ -87,19 +120,38 @@ const ResultPage = ({ navigation, route }) => {
           alignItems: 'center',
         }}
       >
-        <ResultTextView top={98} left={100} text={global.userName}></ResultTextView>
-        <ResultTextView top={98} left={245} text={'67세'}></ResultTextView>
-        <ResultTextView top={127} left={100} text={'ISTP'}></ResultTextView>
-        <ResultTextView top={159} left={100} text={job}></ResultTextView>
+        <ResultTextView top={98 * ratio+num} left={padding + 100 * ratio} text={global.userName}></ResultTextView>
+        <ResultTextView top={98 * ratio+num} left={padding + 245 * ratio} text={'67세'}></ResultTextView>
+        <ResultTextView top={127 * ratio+num} left={padding + 100 * ratio} text={'ISTP'}></ResultTextView>
+        <ResultTextView top={159 * ratio+num} left={padding + 100 * ratio} text={job}></ResultTextView>
 
         {/* 이수과정 */}
-        <ResultTextView top={218} left={99} fontSize={40} text={'A'}></ResultTextView>
-        <ResultTextView top={218} left={154} fontSize={40} text={'C'}></ResultTextView>
-        <ResultTextView top={218} left={218} fontSize={40} text={'B'}></ResultTextView>
-        <ResultTextView top={218} left={275} fontSize={40} text={'B'}></ResultTextView>
+        <ResultTextView top={218 * ratio+num} left={padding + 99 * ratio} fontSize={40 * ratio} text={'A'}></ResultTextView>
+        <ResultTextView top={218 * ratio+num} left={padding + 154 * ratio} fontSize={40 * ratio} text={'C'}></ResultTextView>
+        <ResultTextView top={218 * ratio+num} left={padding + 218 * ratio} fontSize={40 * ratio} text={'B'}></ResultTextView>
+        <ResultTextView top={218 * ratio+num} left={padding + 275 * ratio} fontSize={40 * ratio} text={'B'}></ResultTextView>
 
-        <ResultTextView top={310} left={100} text={dead}></ResultTextView>
-        <ResultTextView top={400} left={100} text={personality}></ResultTextView>
+        <ResultTextView top={310 * ratio+num} left={padding + 100 * ratio} text={dead}></ResultTextView>
+        <ResultTextView top={400 * ratio+num} left={padding + 100 * ratio} text={personality}></ResultTextView>
+        
+          <Image
+          style={{ width: '40%', height: '40%', top: 850}}
+          resizeMode="contain"
+          //containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+          source={require('../images/share.png')}>
+          </Image>
+          <Image
+          style={{ width: '60%', height: '60%', top: 260}}
+          resizeMode="contain"
+         //containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+          source={require('../images/kakao.png')}>
+          </Image>
+          <Image
+          style={{ width: '100%', height: '100%', bottom: 500}}
+          resizeMode="contain"
+          //containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+          source={require('../images/gaddy.png')}>
+          </Image>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
@@ -109,6 +161,8 @@ const ResultPage = ({ navigation, route }) => {
         >
           <Text style={{ color: 'white', fontSize: 22, fontFamily: 'my-custom-font' }}>인생 다시 시작하기</Text>
         </TouchableOpacity>
+        
+        
       </View>
     </ScrollView>
   );

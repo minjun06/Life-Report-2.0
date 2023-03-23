@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
 import Button from '../components/Button';
 import { Audio, AVPlaybackStatus, ResizeMode, Video } from 'expo-av';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -59,6 +59,12 @@ const Home = ({ navigation }) => {
           justifyContent: 'flex-start',
           alignItems: 'center',
         }}>
+          {/* <Image
+          style={{ width: '20%', height: '20%', bottom:460, left:140}}
+          resizeMode="contain"
+          // containerStyle={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}
+          source={require('../images/soundButton.png')}>
+        </Image> */}
         <TouchableOpacity
           style={styles.button}
           // onPress={() => navigation.navigate('EnterName')}>

@@ -6,7 +6,7 @@ const MyImage = ({ ratio, source }) => {
     return (
             <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
                 <Image
-                    style={{ width: '100%', height: undefined, maxWidth: 410, aspectRatio: ratio }}
+                    style={{ width: '100%', height: '100%'}}
                     resizeMode="contain"
                     source={source}
                     containerStyle={{ alignItems: 'center', justifyContent: 'center' }}

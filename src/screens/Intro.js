@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 
 var pageList = [
   'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111478/LifeReport/tl1hjsanqglp0gct48gn.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111488/LifeReport/xolnfs02fkd50pwv8jvw.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111499/LifeReport/rjlczfhiwer4wqciq1e5.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111506/LifeReport/s2dwtz9evavkfliv3kix.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111546/LifeReport/gzuywypbuni58se7r8gv.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111573/LifeReport/xmbdgtwlyzz3ehpsg45k.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111583/LifeReport/ulaozojdptf4tnvplwb3.mp4',
-  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111597/LifeReport/gnictrw7mtodgnodbzcm.mp4',
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679528193/LifeReport/odyqhwgqeiruuyyta1f6.mp4',
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679528216/LifeReport/y7j5j4irspbblmm3ifgd.mp4',
+  //삭제
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679528226/LifeReport/clxsruqyct2yqhcvxk3w.mp4',
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679528232/LifeReport/lvfpjrmnl27si95i8nfv.mp4',
+  //'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679111583/LifeReport/ulaozojdptf4tnvplwb3.mp4',
+  'https://res.cloudinary.com/dq26e5ls4/video/upload/v1679528308/LifeReport/q0jplcqeh3wqwm59m6rc.mp4',
 ];
 
 const Intro = ({ navigation, route }) => {
@@ -43,9 +43,11 @@ const Intro = ({ navigation, route }) => {
         shouldPlay
         //isLooping
         resizeMode="contain"
-        isMuted
+        //isMuted
+        volume={1.0}
         style={styles.video}
         videoStyle={styles.video}
+        
       ></Video>
       <Text style={{fontSize: 15, fontFamily: 'my-second-font', position: 'absolute', top: 650, color: 'white'}}>터치하세요</Text>
     </TouchableOpacity>

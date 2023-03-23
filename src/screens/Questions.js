@@ -65,7 +65,7 @@ const page10 = {
     mbtiJ: 0,
     mbtiP: 0,
   },
-  imgUrl: require('../images/10.png'),
+  imgUrl: require('../images/10.jpg'),
 };
 
 const page11 = {
@@ -101,7 +101,7 @@ const page11 = {
     mbtiJ: 0,
     mbtiP: 0,
   },
-  imgUrl: require('../images/11.png'),
+  imgUrl: require('../images/11.jpg'),
 };
 
 const page12 = {
@@ -137,7 +137,7 @@ const page12 = {
     mbtiJ: 0,
     mbtiP: 0,
   },
-  imgUrl: require('../images/12.png'),
+  imgUrl: require('../images/12.jpg'),
 };
 
 const page13 = {
@@ -174,7 +174,7 @@ const page13 = {
     mbtiJ: 5,
     mbtiP: 0,
   },
-  imgUrl: require('../images/13.png'),  
+  imgUrl: require('../images/13.jpg'),  
 };
 
 const page14 = {
@@ -210,86 +210,86 @@ const page14 = {
     mbtiJ: 5,
     mbtiP: 0,
   },
-  imgUrl: require('../images/14.png'),
+  imgUrl: require('../images/14.jpg'),
 };
 
 const page15 = {
   buttonTop: {message:'ㅇㅇ 피방ㄱ',},
   buttonBottom: {message:'아, 안된다니까 ㅡㅡ',},
-  imgUrl: require('../images/15.png'),
+  imgUrl: require('../images/15.jpg'),
 };
 
 const page16 = {
   buttonTop: {message:'두근두근 연애부터 해야지♡',},
   buttonBottom: {message:'난 인싸가 될래! 학생회 해야지!',},
-  imgUrl: require('../images/16.png'),
+  imgUrl: require('../images/16.jpg'),
 };
 
 const page17 = {
   buttonTop: {message:'내가 가장 잘하는 일',},
   buttonBottom: {message:'내가 가장 좋아하는 일',},
-  imgUrl: require('../images/17.png'),
+  imgUrl: require('../images/17.jpg'),
 };
 
 const page18 = {
   buttonTop: {message:'머리 벗겨지셨어요.',},
   buttonBottom: {message:'(모른척한다..)',},
-  imgUrl: require('../images/18.png'),
+  imgUrl: require('../images/18.jpg'),
 };
 
 const page19 = {
   buttonTop: {message:'언젠가는 하겠죠~ (귀찮다..)',},
   buttonBottom: {message:'구체적인 계획을 얘기한다.',},
-  imgUrl: require('../images/19.png'),
+  imgUrl: require('../images/19.jpg'),
 };
 
 const page20 = {
   buttonTop: {message:'어어 날씨 좋다. (모른척)',},
   buttonBottom: {message:'진지하게 계획을 세운다.',},
-  imgUrl: require('../images/20.png'),
+  imgUrl: require('../images/20.jpg'),
 };
 
 const page21 = {
   buttonTop: {message:'북적북적 게스트하우스!',},
   buttonBottom: {message:'편안하고 안락한 호텔!',},
-  imgUrl: require('../images/21.png'),
+  imgUrl: require('../images/21.jpg'),
 };
 
 const page22 = {
   buttonTop: {message:'힘들어도 자기계발이지',},
   buttonBottom: {message:'인간은 좀 쉬어줘야 해',},
-  imgUrl: require('../images/22.png'),
+  imgUrl: require('../images/22.jpg'),
 };
 
 const page23 = {
   buttonTop: {message:'그래, 튼튼하게만 자라렴',},
   buttonBottom: {message:'안되겠다, 학원을 보내야겠어',},
-  imgUrl: require('../images/23.png'),
+  imgUrl: require('../images/23.jpg'),
 };
 
 const page24 = {
   buttonTop: {message:'인류최초! 이왕이면 새로운 곳',},
   buttonBottom: {message:'달과 화성을 보고 오는 코스',},
-  imgUrl: require('../images/24.png'),
+  imgUrl: require('../images/24.jpg'),
 };
 
 const page25 = {
   buttonTop: {message:'원래 외계인 친구 갖고 싶었어',},
   buttonBottom: {message:'뭐야 무서워 도망치자',},
-  imgUrl: require('../images/25.png'),
+  imgUrl: require('../images/25.jpg'),
 };
 
 const page26 = {
   buttonTop: {message:'반년치 월급 받고 퇴직한다.',},
   buttonBottom: {message:'에이 몰라 일단 버텨!',},
-  imgUrl: require('../images/26.png'),
+  imgUrl: require('../images/26.jpg'),
 };
 
 const page27 = {
   buttonTop: {message:'무난하게 검은색 정장',},
   buttonBottom: {message:'화끈하게 빨간색 정장',},
   ThirdButton: {message:"내가 아끼는 갈색 정장",},
-  imgUrl: require('../images/27.png'),
+  imgUrl: require('../images/27.jpg'),
   visibleThirdButton: false,
   //true로 고치기
 };
@@ -299,8 +299,13 @@ const page27 = {
 const page29 = {
   buttonTop: {message:'가족/친구에게 남긴다.',},
   buttonBottom: {message:'사회에 환원한다.',},
-  imgUrl: require('../images/29.png'),
+  imgUrl: require('../images/29.jpg'),
+  // isDead: true
 };
+
+// const page30 = {
+  
+// };
 
 const dataList = [
   page10,
@@ -322,6 +327,7 @@ const dataList = [
   page26,
   //page27,
   page29,
+
 ];
 
 var lottoNumber = Math.floor(Math.random() * 10);
@@ -367,8 +373,24 @@ const Questions = ({ navigation, route }) => {
     }
   );
 
-  const [pageNum, setPageNum] = useState(0);
+  // const playSound = async () => {
+  //   try {
+  //     // 저장한 path로 음원 파일 불러오기
+  //     await sound.loadAsync(require('./images/eventHorizon.mp3'));
+  //     // await sound.loadAsync({
+  //     //   uri: 'https://file-examples.com/storage/fe137d1f80640cf1e98d9f6/2017/11/file_example_MP3_700KB.mp3',
+  //     // });
+  //     // 음원 재생하기
+  //     await sound.playAsync();
+  //     await sound.setIsLoopingAsync(true);
+  //   } catch (error) {
+  //     // An error occurred!
+  //     console.log(error);
+  //   }
+  // };
+  // playSound();
 
+  const [pageNum, setPageNum] = useState(0);
   const [inputText, setInputText] = useState('');
   const onChangeNumber = (payLoad) => setInputText(payLoad);
   const [text, setText] = useState({
@@ -379,7 +401,7 @@ const Questions = ({ navigation, route }) => {
   });
   const onChangeText = (isTop) => {
     if (pageNum == dataList.length - 1) {
-      navigation.navigate('ResultPage', { resultList })
+      navigation.navigate('Conclusion', { resultList })
       return;
     }
 
@@ -440,13 +462,28 @@ const Questions = ({ navigation, route }) => {
           alignItems: 'center',
         }}
       >    
+        <Image
+          style={{ width: '20%', height: '20%', bottom:480, left:140}}
+          resizeMode="contain"
+          // containerStyle={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}
+          source={require('../images/soundButton.png')}>
+        </Image>
+        
         <Button title={text.topMessage} onPress={() => onChangeText(true)} />
         <Button
           title={text.bottomMessage}
           onPress={() => onChangeText(false)}
         />
+        <Image
+          style={{ width: '30%', height: '30%', bottom: 52}}
+          resizeMode="contain"
+          // containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+          source={require('../images/gaddy.png')}>
+        </Image>
         <ThirdButton isVisible={text.visibleThirdButton}></ThirdButton>
+        
       </View>
+         
     </View>
   );
 };

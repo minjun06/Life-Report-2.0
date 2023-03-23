@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 //import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Button, StatusBar, Platform } from 'react-native';
 import Navigation from './navigations';
 import { Audio, AVPlaybackStatus, Video } from 'expo-av';
 import { useFonts } from 'expo-font';
@@ -12,7 +12,7 @@ global.userName = "";
 
 global.myPlaySound = async () => {
   try {
-    // 저장한 path로 음원 파일 불러오기
+    // 저장한 path로 음원 파일 불러오기    
     await sound.loadAsync(require('./images/bgm.wav'));
     // await sound.loadAsync({
     //   uri: 'https://file-examples.com/storage/fe137d1f80640cf1e98d9f6/2017/11/file_example_MP3_700KB.mp3',
@@ -20,6 +20,7 @@ global.myPlaySound = async () => {
     // 음원 재생하기
     await sound.playAsync();
     await sound.setIsLoopingAsync(true);
+    await sound.setVolumeAsync(0.1);
   } catch (error) {
     // An error occurred!
     console.log(error);
@@ -34,8 +35,9 @@ global.myStopSound = async () => {
   }
 }
 
+global.myPlaySound();
+
 export default function App() {
-    global.myPlaySound();
 
   const [fontsLoaded] = useFonts({
     'my-custom-font': require('../assets/fonts/ChosunCentennial.ttf'),
