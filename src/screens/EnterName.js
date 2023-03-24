@@ -77,7 +77,8 @@ const EnterName = ({ navigation }) => {
           }}
           shouldPlay
           isLooping
-          resizeMode={Platform.OS === 'web' ? 'contain' : 'cover'}
+          // resizeMode={Platform.OS === 'web' ? 'contain' : 'cover'}
+          resizeMode={Platform.OS === 'web' ? 'contain' : 'stretch'}
           isMuted
           style={styles.video}
           videoStyle={styles.video}
@@ -90,17 +91,16 @@ const EnterName = ({ navigation }) => {
           left: 0,
           right: 0,
           bottom: 0,
+          margin: 50,
           justifyContent: 'center',
-          alignItems: 'center',
-          borderBottomColor: '#ffffff',
-          borderBottomWidth: 1
+          alignItems: 'center'          
         }}
       >
         <StyledText>성적표 산출을 위한 이름을 입력해주세요</StyledText>
         <View style={{ flexDirection: 'row', alignItems: 'center', }}>
           <TextInput
             // style={{ borderColor: 'white', flex: 3, borderWidth: 2, padding: 10, fontSize: 20, color: 'white', fontFamily: 'my-second-font', borderRightWidth: 0 }}
-            style={{ height: 46, borderColor: 'white', borderWidth: 2, padding: 10, fontSize: 20, color: 'white', fontFamily: 'my-second-font', borderRightWidth: 0 }}
+            style={{ flex:3, justifyContent: 'center', height: 60, borderColor: 'white', borderWidth: 2, padding: 10, fontSize: 20, color: 'white', fontFamily: 'my-second-font', borderRightWidth: 0 }}
             onSubmitEditing={addName}
             onChangeText={onChangeText}
             returnKeyType="done"
@@ -110,7 +110,7 @@ const EnterName = ({ navigation }) => {
           />
 
           <TouchableOpacity
-            //style={{ flex: 1 }}
+            style={{ flex: 1, height: 60, justifyContent: 'center', alignItems: 'center', borderColor: 'white', padding: 10, borderWidth:2, borderLeftWidth:0, backgroundColor: 'rgba(0, 0, 0, 0.6)',}}
             key={1}            
             onPress={() => {
               global.userName = text
@@ -118,7 +118,7 @@ const EnterName = ({ navigation }) => {
             }}>
             {/* <Text style={{ color: 'white', fontSize: 20, backgroundColor: 'rgba(0, 0, 0, 0.6)', padding: 10, borderColor: 'white', borderWidth: 2, justifyContent: 'center', alignContent: 'center', fontFamily: 'my-second-font', borderLeftWidth: 0 }}>입력</Text> */}
             {/* <Text style={{height: 80, width:80, color: 'white', fontSize: 20, backgroundColor: 'rgba(0, 0, 0, 0.6)', padding: 10, borderColor: 'white', borderWidth:2, justifyContent:'flex-start', alignItems:'flex-start', fontFamily:'my-second-font', borderLeftWidth:0 }}>입력</Text> */}
-            <Text style={{height: 46, width:58, color: 'white', fontSize: 20, backgroundColor: 'rgba(0, 0, 0, 0.6)', padding: 10, borderColor: 'white', borderWidth:2, justifyContent:'flex-start', alignItems:'flex-start', fontFamily:'my-second-font', borderLeftWidth:0 }}>입력</Text>
+            <Text style={{ color: 'white', fontSize: 20, fontFamily: 'my-second-font'}}>입력</Text>
           </TouchableOpacity>
 
         </View>

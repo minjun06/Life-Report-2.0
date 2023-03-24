@@ -5,6 +5,8 @@ import { StyleSheet, ScrollView, Image, Text, View, TextInput, TouchableOpacity,
 import Button from '../components/Button';
 import MyResultImage from '../components/MyResultImage';
 import ResultTextView from '../components/ResultTextView';
+import { useClipboard } from 'use-clipboard-copy';
+//import * as Clipboard from 'expo-clipboard';
 
 const jobList = [
   //순서: 운, 운동 능력, IQ, 정서, 재산, MBTI (E I S N T F J P)
@@ -101,6 +103,13 @@ const ResultPage = ({ navigation, route }) => {
 
   const num = 10;
 
+  const clipboard = useClipboard();
+
+  const handleCopyLink = () => {          
+    clipboard.copy(window.location.href);
+    alert("링크 복사 되었습니다.");
+  }
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <MyResultImage
@@ -156,7 +165,8 @@ const ResultPage = ({ navigation, route }) => {
           style={styles.button}
           onPress={() => {
             //pageNum = 0;
-            navigation.reset({ routes: [{ name: 'Home' }] });
+            handleCopyLink();
+            //navigation.reset({ routes: [{ name: 'Home' }] });
           }}
         >
           <Text style={{ color: 'white', fontSize: 22, fontFamily: 'my-custom-font' }}>인생 다시 시작하기</Text>

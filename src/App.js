@@ -5,37 +5,9 @@ import Navigation from './navigations';
 import { Audio, AVPlaybackStatus, Video } from 'expo-av';
 import { useFonts } from 'expo-font';
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-
-const sound = new Audio.Sound();
+import SoundManager from './components/SoundManager';
 
 global.userName = "";
-
-global.myPlaySound = async () => {
-  try {
-    // 저장한 path로 음원 파일 불러오기    
-    await sound.loadAsync(require('./images/bgm.wav'));
-    // await sound.loadAsync({
-    //   uri: 'https://file-examples.com/storage/fe137d1f80640cf1e98d9f6/2017/11/file_example_MP3_700KB.mp3',
-    // });
-    // 음원 재생하기
-    await sound.playAsync();
-    await sound.setIsLoopingAsync(true);
-    await sound.setVolumeAsync(0.1);
-  } catch (error) {
-    // An error occurred!
-    console.log(error);
-  }
-};
-
-global.myStopSound = async () => {
-  try {
-    await sound.stopAsync();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-global.myPlaySound();
 
 export default function App() {
 
@@ -47,6 +19,10 @@ export default function App() {
   const onLayoutRootView = useCallback(async () => {
 
   }, [fontsLoaded]);
+
+  useEffect(() =>  {
+    //SoundManager.loadSound(require('./images/bgm.wav'));    
+  }, []);
 
   if (!fontsLoaded) {
     return null;
@@ -71,24 +47,3 @@ export default function App() {
     </HelmetProvider>
   )
 };
-
-// export default function App() {
-//   return (
-//     <Container></Container>
-//     <View style={styles.container}>
-//       <Text>Hi!</Text>
-//       <StatusBar style="auto" />
-//       <Button title="시작하기" onPress={() => alert('click')} />
-//       <Button/>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

@@ -11,24 +11,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import MyImage from '../components/MyImage';
-
-const Container = styled.View`
-  flex: 1;
-  //background-color: #fff;
-  align-items: center;
-  justify-content: center;
-`;
-
-const StyledText = styled.Text`
-  font-size: 30px;
-  margin: 10px;
-`;
-
-// const items = [
-//   { id: 1, name: 'RN' },
-//   { id: 2, name: 'Expo' },
-//   { id: 3, name: 'Nav' },
-// ];
+import SoundManager from '../components/SoundManager';
+import SoundEffect from '../components/SoundEffect';
 
 const page10 = {
   //title: "제목",
@@ -238,9 +222,10 @@ const page18 = {
 };
 
 const page19 = {
-  buttonTop: {message:'언젠가는 하겠죠~ (귀찮다..)',},
-  buttonBottom: {message:'구체적인 계획을 얘기한다.',},
+  buttonTop: {message:'언젠가는 하겠죠~ (귀찮다..)', next: 1},
+  buttonBottom: {message:'구체적인 계획을 얘기한다.', next: 2},
   imgUrl: require('../images/19.jpg'),
+  isRoad: true
 };
 
 const page20 = {
@@ -303,10 +288,6 @@ const page29 = {
   // isDead: true
 };
 
-// const page30 = {
-  
-// };
-
 const dataList = [
   page10,
   page11,
@@ -319,18 +300,18 @@ const dataList = [
   page18,
   page19,
   page20,
-  //page21,
+  page21,
   page22,
-  //page23,
+  page23,
   page24,
   page25,
   page26,
-  //page27,
+  page27,
   page29,
-
 ];
 
 var lottoNumber = Math.floor(Math.random() * 10);
+var soundEffect = null;
 
 const Questions = ({ navigation, route }) => {
 
@@ -373,23 +354,6 @@ const Questions = ({ navigation, route }) => {
     }
   );
 
-  // const playSound = async () => {
-  //   try {
-  //     // 저장한 path로 음원 파일 불러오기
-  //     await sound.loadAsync(require('./images/eventHorizon.mp3'));
-  //     // await sound.loadAsync({
-  //     //   uri: 'https://file-examples.com/storage/fe137d1f80640cf1e98d9f6/2017/11/file_example_MP3_700KB.mp3',
-  //     // });
-  //     // 음원 재생하기
-  //     await sound.playAsync();
-  //     await sound.setIsLoopingAsync(true);
-  //   } catch (error) {
-  //     // An error occurred!
-  //     console.log(error);
-  //   }
-  // };
-  // playSound();
-
   const [pageNum, setPageNum] = useState(0);
   const [inputText, setInputText] = useState('');
   const onChangeNumber = (payLoad) => setInputText(payLoad);
@@ -399,11 +363,18 @@ const Questions = ({ navigation, route }) => {
     imageUrl: dataList[pageNum].imgUrl,
     visibleThirdButton: false,
   });
+
+  const [imgRes, setImgRes] = useState(SoundManager.isPlaying ? require('../images/soundButton.png') : require('../images/gaddy.png'))
+
   const onChangeText = (isTop) => {
     if (pageNum == dataList.length - 1) {
       navigation.navigate('Conclusion', { resultList })
       return;
     }
+
+    /*
+      soundEffect.play();    
+    */
 
     //죽는경우
     if (isTop && dataList[pageNum].buttonTop.isDead || !isTop && dataList[pageNum].buttonBottom.isDead) {
@@ -415,14 +386,23 @@ const Questions = ({ navigation, route }) => {
         updateResultList(resultList, dataList[pageNum].buttonBottom);
       }              
 
+      var nextPageNum =  pageNum + 1
+      if (dataList[pageNum].isRoad == true) {
+        if (isTop) {
+          nextPageNum = pageNum + dataList[pageNum].buttonTop.next;
+        } else {
+          nextPageNum = pageNum + dataList[pageNum].buttonBottom.next;
+        }
+      }
+
       setText({
-        topMessage: dataList[pageNum + 1].buttonTop.message,
-        bottomMessage: dataList[pageNum + 1].buttonBottom.message,
-        imageUrl: dataList[pageNum + 1].imgUrl,
-        visibleThirdButton: dataList[pageNum + 1].visibleThirdButton,
+        topMessage: dataList[nextPageNum].buttonTop.message,
+        bottomMessage: dataList[nextPageNum].buttonBottom.message,
+        imageUrl: dataList[nextPageNum].imgUrl,
+        visibleThirdButton: dataList[nextPageNum].visibleThirdButton,
       });
 
-      setPageNum(pageNum + 1);
+      setPageNum(nextPageNum);
       console.log('Page Number:' + pageNum);
       console.log('RandomNumber: ' + lottoNumber);
       console.log('luck:' + resultList.luck);
@@ -445,6 +425,22 @@ const Questions = ({ navigation, route }) => {
     console.log('CN money:' + resultList.money);
   };
 
+  const handleImageOnPress = () => {    
+    SoundManager.toggle();
+    //soundEffect.toggle();        
+  };  
+
+  useEffect(() =>  {
+    SoundManager.setPlayBackStatusListener(onPlaybackStatusUpdate);      
+    soundEffect = new SoundEffect();
+    soundEffect.loadSound(require('../images/아기울음소리.wav'));  
+  }, []);
+
+  const onPlaybackStatusUpdate = (playbackStatus) => {    
+    SoundManager.isPlaying = playbackStatus.isPlaying;    
+    setImgRes(SoundManager.isPlaying ? require('../images/soundButton.png') : require('../images/gaddy.png'))   
+  };
+
   return (
     <View style={{flex:1}}>      
       <MyImage
@@ -462,12 +458,17 @@ const Questions = ({ navigation, route }) => {
           alignItems: 'center',
         }}
       >    
-        <Image
+        
+        <TouchableOpacity          
           style={{ width: '20%', height: '20%', bottom:480, left:140}}
-          resizeMode="contain"
-          // containerStyle={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}
-          source={require('../images/soundButton.png')}>
-        </Image>
+          onPress={() => handleImageOnPress()}>
+            <Image       
+              style={{ width: '100%', height: '100%'}}         
+              resizeMode="contain"                    
+              source={imgRes}>          
+            </Image>
+        </TouchableOpacity>
+        
         
         <Button title={text.topMessage} onPress={() => onChangeText(true)} />
         <Button
@@ -475,7 +476,7 @@ const Questions = ({ navigation, route }) => {
           onPress={() => onChangeText(false)}
         />
         <Image
-          style={{ width: '30%', height: '30%', bottom: 52}}
+          style={{ width: '100%', maxWidth: 180, height: '30%', bottom: '10%'}}
           resizeMode="contain"
           // containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
           source={require('../images/gaddy.png')}>
@@ -501,18 +502,6 @@ const ThirdButton = ({ isVisible }) => {
     
   );
 };
-
-// const restartButton = ({ isVisible } ) => {
-//   return (
-//     <TouchableOpacity
-//       style={styles.button}
-//           onPress={() =>
-//             navigation.reset({ routes: [{ name: 'Home' }] })}
-//             >
-//         <Text style={{color: '#000000'}}>다시 하기</Text>
-//     </TouchableOpacity>
-//   )
-// }
 
 const styles = StyleSheet.create({
   container: {
